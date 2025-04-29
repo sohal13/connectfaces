@@ -38,7 +38,7 @@ function Auth({ type }) {
                 // Save token in cookies
                 const date = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
                 const expires = "expires=" + date.toUTCString();
-                document.cookie = `jwt=${response.data.token}; path=/; ${expires}`;
+                document.cookie = `token=${response.data.token}; path=/; ${expires}`;
                 navigate('/')
             }
         } catch (error) {

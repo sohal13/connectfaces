@@ -7,6 +7,8 @@ import heroImg from '../../assets/heroimg.png';
 import apiClient from '../../apiClient';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContextApi';
+import { BiSolidLogIn } from "react-icons/bi";
+
 
 
 export default function Home() {
@@ -82,25 +84,39 @@ export default function Home() {
           onChange={(e) => setMeetingCode(e.target.value)}
           className="flex-1 w-full px-4 py-2 border border-blue-300 rounded-xl shadow focus:ring-2 focus:ring-indigo-500"
         />
-        <button onClick={handleJoin} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer">
-          Join Meeting
+        <button onClick={user ? handleJoin : ()=>navigate('/login')} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer">
+          {user ? "Join Meeting": "Login to Join Meeting"}
         </button>
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="mt-6"
-      >
-        <button
-          onClick={() => setShowPopup(true)}
-          className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-full shadow-2xl transition-all hover:scale-105"
+      {user ?
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-6"
         >
-          <VideoIcon className="inline-block mr-2 cursor-pointer" /> Start a New Meeting
-        </button>
-      </motion.div>
+          <button
+            onClick={() => setShowPopup(true)}
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-full shadow-2xl transition-all hover:scale-105"
+          >
+            <VideoIcon className="inline-block mr-2 cursor-pointer" /> Start a New Meeting
+          </button>
+        </motion.div>
+        :
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-6"
+        > <button
+          onClick={() => navigate('/login')}
+          className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-full shadow-2xl transition-all hover:scale-105 flex items-center justify-center gap-2" 
+        >
+            <BiSolidLogIn className="" /> Login
+          </button>
 
+        </motion.div> 
+}
       {showPopup && (
         <div className="fixed inset-0 bg-gradient-to-br from-sky-100 via-white to-indigo-100  bg-opacity-50 flex items-center justify-center z-50 ">
           <div className="bg-white p-6 rounded-2xl shadow-xl w-11/12 max-w-md text-center relative">
