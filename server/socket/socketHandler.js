@@ -25,7 +25,7 @@ export const socketHandler = (io, socket) => {
         socketToRoom[socket.id] = roomID;
         // Exclude the current user from the list of users sent back
         const usersInThisRoom = users[roomID].filter((user) => user.socketId !== socket.id);
-        //console.log("Users in room after join:", usersInThisRoom);
+        console.log("Users in room after join:", usersInThisRoom);
         // Emit the list of users in the room (without the new user)
         socket.emit("all users", usersInThisRoom);
         // Inform others that a new user has joined
@@ -41,7 +41,7 @@ export const socketHandler = (io, socket) => {
         // console.log("Sending signal to user:", payload);
         const targetSocket = io.sockets.sockets.get(payload.userToSignal);
         if (targetSocket) {
-           // console.log(`Sending signal from ${socket.id} to ${payload.userToSignal}`);
+           console.log(`Sending signal from ${socket.id} to ${payload.userToSignal}`);
             io.to(payload.userToSignal).emit("user joined", {
                 signal: payload.signal,
                 callerID: payload.callerID,
@@ -57,7 +57,7 @@ export const socketHandler = (io, socket) => {
         //console.log("Returning signal to user:", payload);
         const targetSocket = io.sockets.sockets.get(payload.callerID);
         if (targetSocket) {
-            //console.log(`Returning signal from ${socket.id} to ${payload.callerID}`);
+            console.log(`Returning signal from ${socket.id} to ${payload.callerID}`);
             io.to(payload.callerID).emit("receiving returned signal", {
                 signal: payload.signal,
                 id: socket.id,
