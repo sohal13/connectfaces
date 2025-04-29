@@ -2,8 +2,12 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 export const verifyToken = async (req, res, next) => {
-  const token = req.cookies.token || req.headers.cookie.split(";").find((cookie)=>cookie.startsWith("token="))?.split("=")[1];;
-  
+  console.log("tokeeenss");
+
+  const token = req.cookies.token ||
+    req.headers.cookie?.split(";").find((cookie) => cookie.trim().startsWith("token="))?.split("=")[1]; // Check if req.headers.cookie exists
+  console.log("token ", token);
+
   if (!token) return res.status(401).json({ message: "Unauthorized" });
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
