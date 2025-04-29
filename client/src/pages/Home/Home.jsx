@@ -85,7 +85,7 @@ export default function Home() {
           onChange={(e) => setMeetingCode(e.target.value)}
           className="flex-1 w-full px-4 py-2 border border-blue-300 rounded-xl shadow focus:ring-2 focus:ring-indigo-500"
         />
-        <button onClick={user ? handleJoin : ()=>navigate('/login')} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer">
+        <button onClick={user ? handleJoin : ()=>navigate('/login') && meetingCode ? handleJoin : toast.error("Enter The Room Code To Join")} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer">
           {user ? "Join Meeting": "Login to Join Meeting"}
         </button>
       </motion.div>
