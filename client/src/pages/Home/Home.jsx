@@ -21,7 +21,7 @@ export default function Home() {
   const handleJoin = async () => {
     try {
       if (!meetingCode) {
-        toast.error('Please enter a meeting code');
+        toast.error('Please enter a Meeting code');
         return;
       }
       const res = await apiClient.post(`/room/join`, { roomId: meetingCode, password: password });
