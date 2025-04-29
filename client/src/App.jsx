@@ -3,16 +3,9 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Auth from './pages/Auth/Auth'
 import Home from './pages/Home/Home'
-import Meeting from './pages/Meeting/Meeting'
 import Verify from './pages/Auth/Verify'
 import Room from './pages/Meeting/Room'
 
-// Example pages (we’ll create them soon)
-//import HomePage from './pages/HomePage'
-//import RoomPage from './pages/RoomPage'
-//import Login from './pages/Login'
-//import Register from './pages/Register'
-//import NotFound from './pages/NotFound'
 
 const App = () => {
   return (
