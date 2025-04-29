@@ -81,6 +81,7 @@ export default function Home() {
           type="text"
           placeholder="Enter meeting code"
           value={meetingCode}
+          required
           onChange={(e) => setMeetingCode(e.target.value)}
           className="flex-1 w-full px-4 py-2 border border-blue-300 rounded-xl shadow focus:ring-2 focus:ring-indigo-500"
         />
