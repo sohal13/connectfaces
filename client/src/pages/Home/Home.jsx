@@ -58,7 +58,7 @@ export default function Home() {
       >
         <h1 className="text-5xl font-black text-indigo-800 mb-4">ConnectFace</h1>
         <p className="text-gray-700 text-xl max-w-2xl mx-auto font-medium">
-          Hellow👋 <span className='font-black'>{user?.user?.username}!!</span> Create or join HD group video calls in one click. Lightning fast. Ultra secure. Stunning quality.
+          Hellow👋 <span className='font-black'>{user?.user?.username}!</span> Create or join HD group video calls in one click. Lightning fast. Ultra secure. Stunning quality.
         </p>
       </motion.div>
 
