@@ -24,6 +24,10 @@ const Room = () => {
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+            if (!stream) {
+                console.error("Stream is undefined");
+                return;
+            }
             userVideoRef.current.srcObject = stream;
 
             // Emit the join room event with roomID and userData
@@ -118,6 +122,8 @@ const Room = () => {
                 // Cleanup all peers
                 Object.keys(peersRef.current).forEach((peerID) => cleanupPeer(peerID));
             };
+        }).catch((err) => {
+            console.error("Error accessing media devices:", err);
         });
     }, [roomID, socket]);
 
@@ -141,6 +147,10 @@ const Room = () => {
         });
 
         peer.on("signal", (signal) => {
+            if (!signal) {
+                console.error("Signal is undefined");
+                return;
+            }
             console.log(`Sending signal to user: ${userToSignal}`);
             socket.emit("sending signal", { userToSignal, callerID, userData, signal });
         });
@@ -170,6 +180,10 @@ const Room = () => {
         });
 
         peer.on("signal", (signal) => {
+            if (!signal) {
+                console.error("Signal is undefined");
+                return;
+            }
             socket.emit("returning signal", { signal, callerID });
         });
 
